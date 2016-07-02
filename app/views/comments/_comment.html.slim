@@ -5,12 +5,14 @@
         = link_to avatar(comment.user), 'javascript:void(0)'
       
       .media-body
-        h4.media-heading = link_to "#{comment.user.name}", 'javascript:void(0)'
+        h5.media-heading = link_to "#{comment.user.name}", 'javascript:void(0)'
         p = comment.message
-        p
+        p.links
           = link_to 'Reply', new_comment_path(comment), remote: true
-          = link_to 'Edit', edit_comment_path(comment), remote: true
-          = link_to 'Delete', comment, method: :delete, data: { confirm: "Are you sure?" }
+
+          - if current_user?(comment.user)
+            = link_to 'Edit', edit_comment_path(comment), remote: true
+            = link_to 'Delete', comment, method: :delete, data: { confirm: "Are you sure?" }
 
         div id="reply-#{comment.id}"
 

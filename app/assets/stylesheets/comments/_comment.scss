@@ -1,0 +1,25 @@
+.comments-comment-container {  
+  img {
+    width: 30px;
+    height: auto;
+    border-radius: 2px; 
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .links {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+
+    a {
+      color: #686868;
+      padding-right: 10px;
+
+      &:hover {
+        color: #595858;
+      }
+    }
+  }
+}
