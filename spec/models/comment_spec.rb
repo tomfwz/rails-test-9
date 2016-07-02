@@ -7,7 +7,7 @@ describe Comment do
   end
 
   context 'associations' do
-    it { is_expected.to belong_to :commentable }
+    it { is_expected.to belong_to :parent }
     it { is_expected.to belong_to :user }
   end
 end
