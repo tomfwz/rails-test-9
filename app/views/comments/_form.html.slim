@@ -1,0 +1,6 @@
+.comments-form-container
+  = simple_form_for @comment, defaults: { label: false }, remote: true do |form|
+    = form.hidden_field :parent_id
+    = form.hidden_field :user_id
+    = form.input :message
+    = form.submit 'Submit', class: 'btn btn-primary'
