@@ -1,0 +1,10 @@
+if($('.comments-popup-container[rel=<%=@comment.id=%>]').length == 0) {
+  $('body').append("<%= j render partial: 'popup' %>");
+}
+
+<% if @comment.errors.any? %>
+  $('.comments-popup-container[rel=<%=@comment.id=%>]').remove();
+  $('body').append("<%= j render partial: 'popup' %>");
+<% end %>
+
+$('.comments-popup-container[rel=<%=@comment.id=%>]').modal('show');

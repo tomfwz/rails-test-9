@@ -1,0 +1,11 @@
+div class="comments-popup-container modal fade" aria-labelledby="New address" role="dialog" tabindex="-1" rel=@comment.id
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+        h4.modal-title Edit Comment
+      .modal-body
+        = simple_form_for @comment, remote: true do |form|
+          = form.input :message
+          = form.submit 'Submit', class: 'btn btn-primary'

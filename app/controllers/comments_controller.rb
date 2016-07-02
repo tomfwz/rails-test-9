@@ -1,34 +1,37 @@
 class CommentsController < ApplicationController
+  before_action :set_comment, only: [:edit, :update, :destroy]
+
   def new
     @comment = current_user.comments.build(parent_id: params[:parent_id])
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def create
     @comment = Comment.create(comment_params)
+  end
 
-    respond_to do |format|
-      if @comment.save
-        format.html {
-          flash[:success] = 'Your comment was successfully added!'
-          redirect_to root_url
-        }
-        format.js
-      else
-        format.html {
-          flash[:danger] = 'Error: An error has occurred in posting comment process.'
-          render :new
-        }
-        format.js
-      end
+  def edit; end
+
+  def update
+    @comment.update_attributes(comment_params)
+
+    if @comment.save
+      render :success
+    else
+      render :edit
     end
   end
 
+  def destroy
+    @comment.destroy
+    flash[:success] = 'Your comment has been deleted.'
+    redirect_to root_path
+  end
+
   private
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
   def comment_params
     params.require(:comment).permit(:message, :user_id, :parent_id)

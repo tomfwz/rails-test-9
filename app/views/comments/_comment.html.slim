@@ -7,7 +7,10 @@
       .media-body
         h4.media-heading = link_to "#{comment.user.name}", 'javascript:void(0)'
         p = comment.message
-        p = link_to 'Reply', new_comment_path(comment.id), remote: true
+        p
+          = link_to 'Reply', new_comment_path(comment), remote: true
+          = link_to 'Edit', edit_comment_path(comment), remote: true
+          = link_to 'Delete', comment, method: :delete, data: { confirm: "Are you sure?" }
 
         div id="reply-#{comment.id}"
 
